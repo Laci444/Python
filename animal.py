@@ -10,7 +10,8 @@ def animals(args):
         "Grr": "Lion",
         "Rawr": "Tiger",
         "Ssss": "Snake",
-        "Chirp": "Bird"
+        "Chirp": "Bird",
+        "Anyááááád": "Lakatos Brendon",
     }
     return switch.get(args)
 
