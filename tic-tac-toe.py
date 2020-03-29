@@ -7,6 +7,7 @@ class TicTacToe:
         [" ", " ", " "],
         [" ", " ", " "],
     ]
+    draw = False
     play = True
 
     def pick(self, player):
@@ -14,11 +15,20 @@ class TicTacToe:
         print(curr_pick)
         if curr_pick == ("e", "n", "d"):
             self.endgame()
+            print("megvan")
         self.board[int(curr_pick[0]) - 1][int(curr_pick[1]) - 1] = player
 
     def check(self, player):
         win = None
         count = 0
+        draw = True
+        for i in self.board:
+            for f in i:
+                if f == " ":
+                    draw = False
+        if draw:
+            print(win)
+            return win
         for i in self.board:
             if i == [player, player, player]:
                 win = True
@@ -51,40 +61,51 @@ class TicTacToe:
         print()
 
     def endgame(self, state="end"):  # TODO nem működik van vele valami TOFIX!
+        print("asd")
         if state is not "end":
+            print("bnt van")
             print(f"A játéknak vége! {state} győzött")
             self.play = False
+            print(self.play)
 
-    def __init__(self):
+    def __init__(self):  # TODO: implemented draw; nem működik .-.
         self.display()
         winner = None
         while self.play:
             try:
                 print("O választ")
                 self.pick("O")
-                if self.play is False: break
+                print(self.play)
+                if not self.play: break
             except IndexError:
-                print("Helytelen formátum!");
+                print("Helytelen formátum!")
                 continue
             except ValueError:
-                print("Csak számokat adhatsz meg!");
+                print("Csak számokat adhatsz meg!")
                 continue
             else:
-                self.display()
-                if self.check("O"): winner = "O"; self.endgame(winner)
+                pass
+                # if self.play:
+                #     self.display()
+                #     if self.check("O"): self.endgame("O")
+                #     elif self.check("O") is None: self.endgame("draw"); break
             try:
                 print("X választ")
                 self.pick("X")
-                if self.play is False: break
+                if not self.play: break
             except IndexError:
-                print("Helytelen formátum!");
+                print("Helytelen formátum!")
                 continue
             except ValueError:
-                print("Csak számokat adhatsz meg!");
+                print("Csak számokat adhatsz meg!")
                 continue
             else:
-                self.display()
-                if self.check("X"): winner = "X"; self.endgame(winner)
+                if self.play:
+                    self.display()
+                    if self.check("X"):
+                        self.endgame("X")
+                    elif self.check("X") is None:
+                        self.endgame("draw")
 
 
 if __name__ == "__main__":
