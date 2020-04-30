@@ -12,7 +12,6 @@ class TicTacToe:
 
     def pick(self, player):
         curr_pick = tuple(input("koordináták egyben: "))
-        print(curr_pick)
         if curr_pick == ("e", "n", "d"):
             self.endgame()
             print("megvan")
@@ -26,7 +25,10 @@ class TicTacToe:
             for f in i:
                 if f == " ":
                     draw = False
+                    print(draw)
+        print(f"asdf {draw}")
         if draw:
+            print("lédksyfjvopsdfv " + draw)
             print(win)
             return win
         for i in self.board:
@@ -61,8 +63,7 @@ class TicTacToe:
         print()
 
     def endgame(self, state="end"):  # TODO nem működik van vele valami TOFIX!
-        print("asd")
-        if state is not "end":
+        if not state == "end":
             print("bnt van")
             print(f"A játéknak vége! {state} győzött")
             self.play = False
@@ -85,10 +86,10 @@ class TicTacToe:
                 continue
             else:
                 pass
-                # if self.play:
-                #     self.display()
-                #     if self.check("O"): self.endgame("O")
-                #     elif self.check("O") is None: self.endgame("draw"); break
+                if self.play:
+                    self.display()
+                    if self.check("O"): self.endgame("O")
+                    elif self.check("O") is None: self.endgame("draw"); print("alma ", self.check("O")) ; break
             try:
                 print("X választ")
                 self.pick("X")
